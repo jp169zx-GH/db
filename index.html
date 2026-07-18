@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>星座人格安防画像 | SLCC</title>
+<meta name="description" content="12星座 × 大五人格 × 荣格色彩 居家保全付费特征测试" />
+<link rel="manifest" href="./manifest.json" />
+<meta name="theme-color" content="#b0473f" />
+<link rel="apple-touch-icon" href="./icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+<div id="auth-gate"></div>
+
+<div id="app">
+  <header class="top">
+    <h1>星座人格安防画像</h1>
+    <button id="logout-btn">登出</button>
+  </header>
+  <div id="app-root"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./auth-guard.js"></script>
+<script src="./data.js"></script>
+<script src="./app.js"></script>
+<script>
+  requireAuth(initApp);
+  document.getElementById("logout-btn").onclick = signOut;
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw-v1.js").catch(console.error);
+    });
+  }
+</script>
+</body>
+</html>
